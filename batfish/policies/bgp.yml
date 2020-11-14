@@ -1,0 +1,4 @@
+assertion:
+  - title: All configured BGP sessions MUST be up
+    description: All configured BGP sessions between nodes in the network must be established
+    bgp_session_establishment: ''

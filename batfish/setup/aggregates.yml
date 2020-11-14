@@ -1,0 +1,21 @@
+aggregates:
+  - name: SJC
+    patterns:
+      - bor*
+      - fwl*
+      - spine*
+      - leaf*
+      - bl*
+    children:
+      - name: border
+        patterns:
+          - bor*
+      - name: spine
+        patterns:
+          - spine*
+      - name: leafs
+        patterns:
+          - leaf*
+      - name: border leafs
+        patterns:
+          - bl*

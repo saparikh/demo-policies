@@ -1,0 +1,20 @@
+assertion:
+  - title: SNMP Community client access-list
+    description: Devices must only allow SNMP access for community COMM from servers in 10.1.4.0/22, 10.1.255.0/24, 10.2.234.0/24
+    snmp_community_clients:
+      community: COMM
+      clients:
+        - 10.1.4.0/22
+        - 10.1.255.0/24
+        - 10.2.234.0/24
+  - title: SNMP Trap Servers
+    description: Devices must have the following SNMP trap servers, 10.1.4.1, 10.1.5.1, 10.72.48.141
+    devices_have_servers:
+      servers:
+        snmp_trap:
+          set:
+            equals:
+              items:
+                - 10.1.4.1
+                - 10.1.5.1
+                - 10.72.48.141

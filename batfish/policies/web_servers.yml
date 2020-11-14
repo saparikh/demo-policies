@@ -1,0 +1,56 @@
+assertion:
+  - title: HTTPS and ICMP traffic to web-servers (10.200.1.0/24, 10.200.2.0/24) is allowed by firewall
+    description: Firewall fwl01 permits HTTPS and ICMP traffic from zone OUTSIDE to zone INSIDE to web-servers
+    cross_zone_policy_filters_flows:
+      firewalls:
+        hostname:
+          regex: fwl01
+      expect:
+        action: PERMIT
+      flows:
+        and:
+          elements:
+            - or:
+                elements:
+                  - app: tcp/443
+                  - app: icmp
+            - or:
+                elements:
+                  - dst_ip:
+                      in_prefix: 10.200.1.0/24
+                  - dst_ip:
+                      in_prefix: 10.200.2.0/24
+      from:
+        zone:
+          name: OUTSIDE
+      to:
+        zone:
+          name: INSIDE
+  - title: Non HTTPS and ICMP traffic to web-servers (10.200.1.0/24, 10.200.2.0/24) is blocked by firewall
+    description: Firewall fwl01 blocks non-HTTPS and ICMP traffic from zone OUTSIDE to zone INSIDE to web-servers
+    cross_zone_policy_filters_flows:
+      firewalls:
+        hostname:
+          regex: fwl01
+      expect:
+        action: DENY
+      flows:
+        and:
+          elements:
+            - not:
+                or:
+                  elements:
+                    - app: tcp/443
+                    - app: icmp
+            - or:
+                elements:
+                  - dst_ip:
+                      in_prefix: 10.200.1.0/24
+                  - dst_ip:
+                      in_prefix: 10.200.2.0/24
+      from:
+        zone:
+          name: OUTSIDE
+      to:
+        zone:
+          name: INSIDE

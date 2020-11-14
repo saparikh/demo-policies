@@ -1,0 +1,35 @@
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+
+    - name: Checkout this repo
+      uses: actions/checkout@v2
+      with:
+        path: main #to reference files from this repo, the filepath to use will be $GITHUB_WORKSPACE/main
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8.x'
+
+    - name: install python dependencies
+      run: |
+        pip install $GITHUB_WORKSPACE/main/requirements.txt
+
+    - name: install SSL certificate for Batfish Enterprise server
+      run: |
+        mkdir -p $GITHUB_WORKSPACE/tmp
+        echo ${{ secrets.BFE_SSL_CERTIFICATE }} > $GITHUB_WORKSPACE/tmp/serverCA_base64
+        base64 --decode $GITHUB_WORKSPACE/tmp/serverCA_base64 > $GITHUB_WORKSPACE/tmp/serverCA.pem
+        python3 $GITHUB_WORKSPACE/main/scripts/install_cert_python.py --cert $GITHUB_WORKSPACE/tmp/serverCA.pem
+
+    - name: upload policies to Batfish Enterprise server
+      run: |
+        python3 $GITHUB_WORKSPACE/main/scripts/setup_bfe.py -n demonet -a $GITHUB_WORKSPACE/main/batfish/setup/aggregates.yml \
+        -p $GITHUB_WORKSPACE/main/batfish/policies -sn ${{ secrets.BFE_SERVER_NAME }}
