@@ -20,7 +20,7 @@ jobs:
 
     - name: install python dependencies
       run: |
-        pip install $GITHUB_WORKSPACE/main/requirements.txt
+        pip install -r $GITHUB_WORKSPACE/main/requirements.txt
 
     - name: install SSL certificate for Batfish Enterprise server
       run: |
