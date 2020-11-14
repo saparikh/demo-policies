@@ -24,7 +24,7 @@ jobs:
 
     - name: add /etc/hosts entry for Batfish Enterprise server
       run: |
-        sudo echo ${{ secrets.BFE_SERVER_IP }} ${{ secrets.BFE_SERVER_NAME }} |  tee -a /etc/hosts
+        echo ${{ secrets.BFE_SERVER_IP }} ${{ secrets.BFE_SERVER_NAME }} |  sudo tee -a /etc/hosts
 
     - name: install SSL certificate for Batfish Enterprise server
       run: |
