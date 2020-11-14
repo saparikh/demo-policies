@@ -27,7 +27,7 @@ jobs:
         mkdir -p $GITHUB_WORKSPACE/tmp
         echo ${{ secrets.BFE_SSL_CERTIFICATE }} > $GITHUB_WORKSPACE/tmp/serverCA_base64
         base64 --decode $GITHUB_WORKSPACE/tmp/serverCA_base64 > $GITHUB_WORKSPACE/tmp/serverCA.pem
-        python3 $GITHUB_WORKSPACE/main/scripts/install_cert_python.py --cert $GITHUB_WORKSPACE/tmp/serverCA.pem
+        python3 $GITHUB_WORKSPACE/main/scripts/install_cert.py --cert $GITHUB_WORKSPACE/tmp/serverCA.pem
 
     - name: upload policies to Batfish Enterprise server
       run: |
