@@ -30,8 +30,6 @@ if __name__ == '__main__':
                         help='TCP port the Batfish Enterprise server is listening to')
     parser.add_argument('-r', action='store_true', dest='re_init',
                         help='Reset Batfish Enterprise by deleting network')
-    parser.add_argument('-nr', action='store_false', dest='re_init',
-                        help='Do not reset Batfish Enterprise by deleting network')
     options = parser.parse_args()
 
     POLICY_DIR = options.policies

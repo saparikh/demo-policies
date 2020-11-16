@@ -36,4 +36,4 @@ jobs:
     - name: upload policies to Batfish Enterprise server
       run: |
         python3 $GITHUB_WORKSPACE/main/scripts/setup_bfe.py -n demonet -a $GITHUB_WORKSPACE/main/batfish/setup/aggregates.yml \
-        -p $GITHUB_WORKSPACE/main/batfish/policies -sn ${{ secrets.BFE_SERVER_NAME }} -nr
+        -p $GITHUB_WORKSPACE/main/batfish/policies -sn ${{ secrets.BFE_SERVER_NAME }} -r
