@@ -23,13 +23,15 @@ if __name__ == '__main__':
     parser.add_argument('-a', '--aggregates',
                         help='Aggregates for the network')
     parser.add_argument('-p', '--policies', default = "./batfish/policies",
-                        help='Directory with Batfish Enterprise p olicies. Default value is "./batfish/policies"')
+                        help='Directory with Batfish Enterprise policies. Default value is "./batfish/policies"')
     parser.add_argument('-sn', '--server_name', required=True,
                         help='Hostname or IP address of Batfish Enterprise server')
     parser.add_argument('-sp', '--server_port', default = 443,
                         help='TCP port the Batfish Enterprise server is listening to')
-    parser.add_argument('-r', '--reinit', default=True, action='store_true',
+    parser.add_argument('-r', action='store_true', dest='re_init',
                         help='Reset Batfish Enterprise by deleting network')
+    parser.add_argument('-nr', action='store_false', dest='re_init',
+                        help='Do not reset Batfish Enterprise by deleting network')
     options = parser.parse_args()
 
     POLICY_DIR = options.policies
@@ -45,7 +47,7 @@ if __name__ == '__main__':
     port = options.server_port
     network = options.network
     bf = Session(host=host, port=port)  # establish session
-    if options.reinit:
+    if options.re_init:
         try:
             bf.delete_network(network)
         except:
