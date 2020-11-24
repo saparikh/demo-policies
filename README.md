@@ -1,4 +1,5 @@
-# demo-policies
+# Batfish Enterprise policy examples
+
 This repository contains example policies for a Batfish Enterprise demonstration. Configurations for the demo network can be found at https://github.com/saparikh/demo-network.
 
 Together these 2 repositories are used to demonstrate, how you can:
