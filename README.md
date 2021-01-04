@@ -8,7 +8,7 @@ Together these 2 repositories are used to demonstrate, how you can:
 - Test changes to configurations with Batfish Enterprise, before deploying them to production.
 
 ## High-level demo workflow
-Policies are created in this repository and uploaded to the Batfish Enterprise service
+Policies are created in this repository and uploaded to the Batfish Enterprise service.
 Production configurations are in the main branch of the `demo-network` repository, which is setup to push new changes to the Batfish Enterprise service:
 - Anytime a new production snapshot is committed to the main branch
 - Anytime a branch is created to test changes to production configurations
