@@ -28,6 +28,8 @@ if __name__ == '__main__':
                         help='Hostname or IP address of Batfish Enterprise server')
     parser.add_argument('-sp', '--server_port', default = 443,
                         help='TCP port the Batfish Enterprise server is listening to')
+    parser.add_argument('-sa', '--server_access_token', required=True,
+                        help='Access token for the Batfish Enterprise service')
     parser.add_argument('-r', action='store_true', dest='re_init',
                         help='Reset Batfish Enterprise by deleting network')
     options = parser.parse_args()
@@ -44,7 +46,8 @@ if __name__ == '__main__':
     host = options.server_name
     port = options.server_port
     network = options.network
-    bf = Session(host=host, port=port)  # establish session
+    access_token = options.server_access_token
+    bf = Session(host=host, port=port, access_token=access_token)  # establish session
     if options.re_init:
         try:
             bf.delete_network(network)
