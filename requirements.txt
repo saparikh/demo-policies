@@ -1,5 +1,5 @@
 pybfe
 PyYAML
 jinja2
-argparse
+ConfigArgParse
 certifi

@@ -2,7 +2,7 @@
 from pybfe.client.session import Session
 import yaml
 from pathlib import Path
-import argparse
+import configargparse
 
 
 def upload_bf_policies(bf, policy_dir):
@@ -17,7 +17,7 @@ def upload_bf_policies(bf, policy_dir):
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser()
+    parser = configargparse.ArgParser()
     parser.add_argument('-n', '--network', default="demonet",
                         help='Network name')
     parser.add_argument('-a', '--aggregates',
