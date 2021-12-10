@@ -2,12 +2,12 @@ assertion:
   - title: All external users should be able to access https://test.com
     description: Web-servers should be accessible via HTTPS from the specified source(s)
     serviceAccessibility:
-    source:
-      location:
-        interfaceLinkLocation:
-          interface:
-            hostname: internet
-            interface_name: out
+      source:
+        location:
+          interfaceLinkLocation:
+            interface:
+              hostname: internet
+              interface_name: out
       sourceIps:
         exclude:
           - in_prefix: 10.0.0.0/8
