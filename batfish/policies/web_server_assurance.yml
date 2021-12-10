@@ -25,14 +25,14 @@ assertion:
       sourcePorts:
         - start: 49152
           end: 65535
-        services:
-          - name: Group 1 (10.200.1.0/24)
-            apps:
-              - tcp/443
-            serviceIp:
-              in_prefix: 10.200.1.0/24
-          - name: Group 2 (10.200.2.0/24)
-            apps:
-              - tcp/443
-            serviceIp:
-              in_prefix: 10.200.2.0/24
+      services:
+        - name: Group 1 (10.200.1.0/24)
+          apps:
+            - tcp/443
+          serviceIp:
+            in_prefix: 10.200.1.0/24
+        - name: Group 2 (10.200.2.0/24)
+          apps:
+            - tcp/443
+          serviceIp:
+            in_prefix: 10.200.2.0/24
